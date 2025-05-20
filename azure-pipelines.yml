@@ -1,8 +1,8 @@
 # Stage 
 
 trigger:
-- main
-
+- master
+#
 pool:
   name: Default
 
