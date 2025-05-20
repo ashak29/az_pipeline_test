@@ -50,14 +50,6 @@ stages:
               architecture: 'x64'
             displayName: 'Set Python Version'
   
-  - stage: 'Runscript'
-    displayName: "Running a script"
-    jobs:
-      - job: 'runpyscript'
-        steps: 
-        - script: |
-            py main.py
-            echo " successfully runned the script"
-  
+
             
 
