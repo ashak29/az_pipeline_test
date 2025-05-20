@@ -1,25 +1,53 @@
-# Stage 
+# Trigger pipeline when code is pushed to master
+# trigger:
+# - main
 
 trigger:
-- master
-#
+   branches:
+     include:
+       - master
+
+pr:
+  branches:
+    include:
+      - master
+
+# Use self-hosted agent pool
 pool:
   name: Default
 
-# pool:
-#   vmImage: ubuntu-latest
-
+# Define stages
 stages:
   - stage: 'UT'
-    displayName: 'UT stage'
+    displayName: 'Unit Test Stage'
     jobs:
       - job: 'unitTest'
-        displayName: 'Running unit tests'
+        displayName: 'Running Unit Tests'
         steps:
-          - script: echo 'RUnning a demo app unit test'
+          - script: echo 'Running a demo app unit test'
+            # displayName: 'Echo Message'
+
           - task: UsePythonVersion@0
             inputs:
               versionSpec: '3.x'
               addToPath: true
               architecture: 'x64'
-              
+            displayName: 'Set Python Version'
+            
+  - stage: 'Build'
+    displayName: 'build the script'
+    jobs:
+      - job: 'buildscript'
+        displayName: 'building a script'
+        steps:
+          -  script: echo 'Running a demo app unit test'
+            # displayName: 'Echo Message'
+
+          - task: UsePythonVersion@0
+            inputs:
+              versionSpec: '3.x'
+              addToPath: true
+              architecture: 'x64'
+            displayName: 'Set Python Version'
+            
+
