@@ -9,11 +9,18 @@ pool:
 # pool:
 #   vmImage: ubuntu-latest
 
-steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
-
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    python --version
-  displayName: 'Run a multi-line script'
+stages:
+  - stage: 'UT'
+    displayName: 'UT stage'
+    jobs:
+      - job: 'unitTest'
+        displayName: 'Running unit tests'
+        steps:
+          - script: echo 'RUnning a demo app unit test'
+          - task: UsePythonVersion@0
+            inputs:
+              versionSpec: '3.10'
+              allowUnstable: true
+              addToPath: true
+              architecture: 'x64'
+              
