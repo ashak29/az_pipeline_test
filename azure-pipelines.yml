@@ -1,6 +1,16 @@
 # Trigger pipeline when code is pushed to master
+# trigger:
+# - main
+
 trigger:
-- main
+   branches:
+     include:
+       - master
+
+pr:
+  branches:
+    include:
+      - master
 
 # Use self-hosted agent pool
 pool:
@@ -15,7 +25,7 @@ stages:
         displayName: 'Running Unit Tests'
         steps:
           - script: echo 'Running a demo app unit test'
-            displayName: 'Echo Message'
+            # displayName: 'Echo Message'
 
           - task: UsePythonVersion@0
             inputs:
@@ -23,3 +33,21 @@ stages:
               addToPath: true
               architecture: 'x64'
             displayName: 'Set Python Version'
+            
+  - stage: 'Build'
+    displayName: 'build the script'
+    jobs:
+      - job: 'buildscript'
+        displayName: 'building a script'
+        steps:
+          -  script: echo 'Running a demo app unit test'
+            # displayName: 'Echo Message'
+
+          - task: UsePythonVersion@0
+            inputs:
+              versionSpec: '3.x'
+              addToPath: true
+              architecture: 'x64'
+            displayName: 'Set Python Version'
+            
+
