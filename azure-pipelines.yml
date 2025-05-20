@@ -40,7 +40,7 @@ stages:
       - job: 'buildscript'
         displayName: 'building a script'
         steps:
-          -  script: echo 'Running a demo app unit test'
+          -  script: echo 'Build the script'
             # displayName: 'Echo Message'
 
           - task: UsePythonVersion@0
