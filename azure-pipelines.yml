@@ -1,6 +1,6 @@
 # Trigger pipeline when code is pushed to master
 trigger:
-- master
+- main
 
 # Use self-hosted agent pool
 pool:
