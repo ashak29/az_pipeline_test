@@ -19,8 +19,7 @@ stages:
           - script: echo 'RUnning a demo app unit test'
           - task: UsePythonVersion@0
             inputs:
-              versionSpec: '3.10'
-              allowUnstable: true
-              addToPath: true
+              versionSpec: '3.x'
+              addToPath: false
               architecture: 'x64'
               
